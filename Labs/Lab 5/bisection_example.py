@@ -20,23 +20,23 @@ def bisection(f,a,b,tol,Nmax):
 
     '''     first verify there is a root we can find in the interval '''
     fa = f(a); fb = f(b);
+    count = 0
     if (fa*fb>0):
        ier = 1
        astar = a
-       return [astar, ier]
+       return [astar, ier,count]
 
     ''' verify end point is not a root '''
     if (fa == 0):
       astar = a
       ier =0
-      return [astar, ier]
+      return [astar, ier,count]
 
     if (fb ==0):
       astar = b
       ier = 0
-      return [astar, ier]
+      return [astar, ier,count]
 
-    count = 0
     while (count < Nmax):
       c = 0.5*(a+b)
       fc = f(c)
@@ -68,10 +68,9 @@ def bisection(f,a,b,tol,Nmax):
     return [astar,ier, count] 
 
 # use routines    
-f = lambda x: x**9 - 45*(x**8) + 900*(x**7) - 10500*(x**6) + 78750*(x**5) - 393750*(x**4) + 1312500*(x**3) - 2812500*(x**2) + 3515625*x - 1953125
-#f = lambda x: x**3 + x -4
-a = 4.82
-b = 5.2
+f = lambda x: np.exp(((x**2)+7*x-30)) - 1
+a = 2
+b = 4.5
 
 Nmax = 100
 tol = 1e-3
