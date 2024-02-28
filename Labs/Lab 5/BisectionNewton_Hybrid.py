@@ -119,7 +119,7 @@ def newton(f,fp,p0,tol,Nmax):
 
 # use routines    
 f = lambda x: np.exp(((x**2)+7*x-30)) - 1
-fp = lambda x: (x**2+7)*np.exp(((x**2)+7*x-30))
+fp = lambda x: (2*x+7)*np.exp(((x**2)+7*x-30))
 fpp = lambda x: (4*(x**2)+28*x+51)*np.exp(((x**2)+7*x-30))
 a = 2
 b = 4.5

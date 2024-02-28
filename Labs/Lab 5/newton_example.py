@@ -35,11 +35,11 @@ def newton(f,fp,p0,tol,Nmax):
         
 # use routine
 f = lambda x: np.exp(((x**2)+7*x-30)) - 1
-fp = lambda x: (x**2+7)*np.exp(((x**2)+7*x-30))
+fp = lambda x: (2*x+7)*np.exp(((x**2)+7*x-30))
 
 p0 = 4.5
 Nmax = 100
-tol = 1.e-3
+tol = 1e-6
 
 p,pstar,info,it = newton(f,fp,p0,tol, Nmax)
 print('the approximate root is', '%16.16e' % pstar)

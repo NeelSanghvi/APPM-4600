@@ -73,7 +73,7 @@ a = 2
 b = 4.5
 
 Nmax = 100
-tol = 1e-3
+tol = 1e-6
 
 [astar,ier, count] = bisection(f,a,b,tol,Nmax)
 print('the approximate root is',astar)
