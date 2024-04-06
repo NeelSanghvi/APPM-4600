@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Apr  2 07:53:13 2024
-
-@author: 2021n
-"""
-
 import numpy as np
 import numpy.linalg as la
 import matplotlib.pyplot as plt
@@ -14,7 +7,7 @@ from scipy.integrate import quad
 def driver():
 
 #  function you want to approximate
-    f = lambda x: 1/(1+x**2)
+    f = lambda x: math.exp(x)
 
 # Interval of interest
     a = -1
@@ -23,7 +16,7 @@ def driver():
     w = lambda x: 1.
 
 # order of approximation
-    n = 5
+    n = 2
 
 #  Number of points you want to sample in [a,b]
     N = 1000
@@ -46,18 +39,8 @@ def driver():
     err = abs(pval-fex)
     plt.plot(xeval,np.log10(err)); 
     plt.show()
-    
 
-def eval_legendre(n,x):
-    if n == 0:
-        return [1]
-    elif n == 1:
-        return [1, x]
-    else:
-        p = [1, x]
-        for i in range(2, n + 1):
-            p.append(((2*i - 1)*x * p[i-1] - (i - 1) * p[i-2]) / i)
-        return p
+
 
 
 def eval_legendre_expansion(f,a,b,w,n,x):
@@ -66,21 +49,20 @@ def eval_legendre_expansion(f,a,b,w,n,x):
 
 #  Evaluate all the Legendre polynomials at x that are needed
 # by calling your code from prelab
-  p = eval_legendre(n, x)
-    
+  p = ...
   # initialize the sum to 0
   pval = 0.0
   for j in range(0,n+1):
       # make a function handle for evaluating phi_j(x)
-      phi_j = lambda x: eval_legendre(n, x)[j]
+      phi_j = lambda x: ...
       # make a function handle for evaluating phi_j^2(x)*w(x)
-      phi_j_sq = lambda x: w(x)*(phi_j(x))**2
+      phi_j_sq = lambda x: ...
       # use the quad function from scipy to evaluate normalizations
-      norm_fac,err = quad(phi_j_sq,a,b)
+      norm_fac,err = ...
       # make a function handle for phi_j(x)*f(x)*w(x)/norm_fac
-      func_j = lambda x: phi_j(x)*f(x)*w(x) / norm_fac
+      func_j = lambda x: ...
       # use the quad function from scipy to evaluate coeffs
-      aj,err = quad(func_j,a,b)
+      aj,err = ...
       # accumulate into pval
       pval = pval+aj*p[j]
 
@@ -89,5 +71,3 @@ def eval_legendre_expansion(f,a,b,w,n,x):
 if __name__ == '__main__':
   # run the drivers only if this is called from the command line
   driver()
-
-
